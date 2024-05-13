@@ -105,7 +105,8 @@ class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveSmallIntegerField()
 
-    class Meta 
+    class Meta:
+        unique_together = [['cart', 'product']]
 
 
 class Review(models.Model):
