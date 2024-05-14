@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
 from uuid import uuid4
@@ -57,6 +58,7 @@ class Customer(models.Model):
     birth_date = models.DateField(null=True, blank=True)
     membership = models.CharField(
         max_length=1, choices=MEMBERSHIP_CHOICES, default=MEMBERSHIP_BRONZE)
+    
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -93,6 +95,7 @@ class Address(models.Model):
     city = models.CharField(max_length=255)
     customer = models.ForeignKey(
         Customer, on_delete=models.CASCADE)
+
 
 
 class Cart(models.Model): 
