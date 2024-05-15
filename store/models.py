@@ -63,6 +63,9 @@ class Customer(models.Model):
 
     class Meta:
         ordering = ['user__first_name', 'user__last_name']
+        permissions = [
+            ('view_history', 'Can view history')
+        ]
 
     @admin.display(ordering = 'user__first_name')
     def first_name(self):
