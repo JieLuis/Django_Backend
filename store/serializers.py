@@ -119,8 +119,11 @@ class CreateOrderSerializer(serializers.Serializer):#Create an order from a cart
     cart_id = serializers.UUIDField()
 
     def validate_cart_id(self, cart_id):
+        print('triger')
         if not Cart.objects.filter(pk=cart_id).exists():
             raise serializers.ValidationError('No card with given id was found')
+        if CartItem.objects.filter(cart_id=cart_id).count()==0:
+            raise serializers.ValidationError('This card is empty')
         return cart_id
 
     def save(self, **kwargs):
