@@ -13,6 +13,7 @@ djoser = "*"
 djangorestframework-simplejwt = "*"
 pillow = "*"
 mysqlclient = "==2.1.1"
+django-cors-header = "*"
 
 [dev-packages]
 autopep8 = "*"

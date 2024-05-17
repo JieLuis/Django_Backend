@@ -18,16 +18,6 @@ class ReviewSerializer(serializers.ModelSerializer):
         product_id = self.context['product_id']
         return Review.objects.create(product_id=product_id, ** validated_data)
 
-class ProductSerializer(serializers.ModelSerializer):
-    price = serializers.DecimalField(max_digits=6, decimal_places=2, source='unit_price')
-    price_with_tax = serializers.SerializerMethodField(method_name="calculate_tax")
-    
-    class Meta:
-        model = Product
-        fields = ['id', 'title', 'price', 'collection', 'price_with_tax', 'reviews']
-    
-    def calculate_tax(self, product : Product):
-        return product.unit_price * Decimal(1.1)
     
 class SimpleProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,6 +32,19 @@ class ProductImageSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         product_id = self.context['product_id']
         return ProductImage.objects.create(product_id=product_id,**validated_data)
+    
+
+class ProductSerializer(serializers.ModelSerializer):
+    price = serializers.DecimalField(max_digits=6, decimal_places=2, source='unit_price')
+    price_with_tax = serializers.SerializerMethodField(method_name="calculate_tax")
+    images = ProductImageSerializer(many=True, read_only=True)
+    
+    class Meta:
+        model = Product
+        fields = ['id', 'title', 'price', 'collection', 'price_with_tax', 'reviews', 'images']
+    
+    def calculate_tax(self, product : Product):
+        return product.unit_price * Decimal(1.1)
 
 class CartItemSerializer(serializers.ModelSerializer):
     product = SimpleProductSerializer()
