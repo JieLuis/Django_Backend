@@ -184,3 +184,5 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 2525
 DEFAULT_FROM_EMAIL = 'from@moshy.com'
+
+CELERY_BROKER_URL = 'redis://localhost:6379/1'
