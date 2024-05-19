@@ -20,6 +20,7 @@ class Collection(models.Model):
 
     def __str__(self) -> str:
         return self.title
+    
     class Meta:
         ordering = ['title']
 
@@ -32,7 +33,7 @@ class Product(models.Model):
         max_digits=6,
         decimal_places=2,
         validators=[MinValueValidator(1)])
-    inventory = models.IntegerField(validators=[MinValueValidator(0)])
+    inventory = models.IntegerField(validators=[MinValueValidator(0)], null=True)
     last_update = models.DateTimeField(auto_now=True)
     collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
     promotions = models.ManyToManyField(Promotion, blank=True)
