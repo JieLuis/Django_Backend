@@ -19,6 +19,8 @@ redis = "*"
 celery = "*"
 flower = "*"
 django-redis = "*"
+gunicorn = "*"
+dj-database-url = "*"
 
 [dev-packages]
 autopep8 = "*"
