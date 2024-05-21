@@ -13,7 +13,6 @@ djoser = "*"
 djangorestframework-simplejwt = "*"
 pillow = "*"
 mysqlclient = "==2.1.1"
-
 django-templated-mail = "*"
 redis = "*"
 celery = "*"
@@ -21,6 +20,8 @@ flower = "*"
 django-redis = "*"
 gunicorn = "*"
 dj-database-url = "*"
+django-silk = "*"
+django-cors-header="*"
 
 [dev-packages]
 autopep8 = "*"
@@ -29,8 +30,6 @@ pytest-django = "*"
 pytest-watch = "*"
 model-bakery = "*"
 locust = "*"
-django-silk = "*"
-
 
 [requires]
 python_version = "3.9"
