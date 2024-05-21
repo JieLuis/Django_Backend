@@ -13,7 +13,7 @@ djoser = "*"
 djangorestframework-simplejwt = "*"
 pillow = "*"
 mysqlclient = "==2.1.1"
-django-cors-header = "*"
+
 django-templated-mail = "*"
 redis = "*"
 celery = "*"
