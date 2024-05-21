@@ -8,13 +8,22 @@ from rest_framework.request import Request
 from templated_mail.mail import BaseEmailMessage
 from .tasks import notify_customers
 import requests
+import logging
+
+logger = logging.getLogger(__name__)
+logger.info 
+
 
 class HelloView(APIView):
     @method_decorator(cache_page(5 * 60))
     def get(self, request : Request):
-        response : requests.Response = requests.get('https://httpbin.org/delay/0')
-        data = response.json()
-        # print(request)
+        try:
+            logger.info("Calling httpbin...")
+            response : requests.Response = requests.get('https://httpbin.org/delay/0')
+            logger.info("Received the response...")
+            data = response.json()
+        except requests.ConnectionError:
+            logger.critical("Httpbin is offline")
         return render(request, 'hello.html', {'name': 'Jie'}) 
 
 
